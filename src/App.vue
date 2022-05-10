@@ -1,27 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <Header />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
+import { Todo } from "./models/Todo";
 
 @Options({
   components: {
-    HelloWorld,
+    Header,
   },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --c-dark-blue: #141d2f;
+  --c-medium-blue: #1e2a47;
+  --c-light-blue: #0079ff;
+  --c-blue-hover: #60abff;
+  --c-text: #ffffff;
+  --font-xl: 26px;
+  --font-l: 18px;
+  --font-body: 16px;
+  --font-sm: 13px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--c-dark-blue);
+  color: var(--c-text);
 }
 </style>
