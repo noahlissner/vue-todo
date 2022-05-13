@@ -1,15 +1,20 @@
 <template>
   <Header />
+  <TodosWrapper />
+  <Footer />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Header from "./components/Header.vue";
-import { Todo } from "./models/Todo";
+import TodosWrapper from "./components/TodosWrapper.vue";
+import Footer from "./components/Footer.vue";
 
 @Options({
   components: {
     Header,
+    TodosWrapper,
+    Footer,
   },
 })
 export default class App extends Vue {}
@@ -28,15 +33,23 @@ export default class App extends Vue {}
   --c-light-blue: #0079ff;
   --c-blue-hover: #60abff;
   --c-text: #ffffff;
+  --font-xxl: 32px;
   --font-xl: 26px;
   --font-l: 18px;
   --font-body: 16px;
   --font-sm: 13px;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background: var(--c-dark-blue);
   color: var(--c-text);
+  padding: 0 20px;
 }
 </style>

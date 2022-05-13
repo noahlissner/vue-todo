@@ -1,7 +1,13 @@
 export class Todo {
-  title: string;
+  id: number;
+  text: string;
+  date: Date;
+  done: boolean;
 
-  constructor(text: string) {
-    this.title = text;
+  constructor(input: string) {
+    this.text = input;
+    this.date = new Date();
+    this.id = Math.round(Math.random() * 1000);
+    this.done = false;
   }
 }
