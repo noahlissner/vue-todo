@@ -10,6 +10,10 @@
       <button class="form__btn">Add</button>
     </form>
     <div v-if="todos.length > 0" class="container">
+      <button class="sort" @click="handleSort">Sort By Name</button>
+      <button class="sort sort__reset" @click="getFromLocalStorage">
+        Reset
+      </button>
       <ul class="container__list">
         <TodoItem
           @delete="handleDelete($event)"
@@ -47,7 +51,6 @@ export default class TodosWrapper extends Vue {
     this.todos.unshift(todo);
     this.inputValue = "";
     this.saveToLocalStorage();
-    console.log(this.inputValue.length);
   }
 
   handleDelete(id: number) {
@@ -64,12 +67,27 @@ export default class TodosWrapper extends Vue {
     this.saveToLocalStorage();
   }
 
+  handleSort() {
+    this.todos.sort(function (a, b) {
+      let nameA = a.text.toUpperCase();
+      let nameB = b.text.toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   saveToLocalStorage() {
     localStorage.setItem("todos", JSON.stringify(this.todos));
   }
 
   getFromLocalStorage() {
-    const text = localStorage.getItem("todos");
+    const text: string | null = localStorage.getItem("todos");
 
     if (text) {
       const parsed = JSON.parse(text);
@@ -134,6 +152,22 @@ main {
     gap: 20px;
     flex-direction: column;
     padding: 20px 40px;
+  }
+
+  & .sort {
+    background-color: var(--c-light-blue);
+    color: var(--c-text);
+    border: none;
+
+    padding: 10px 8px;
+    border-radius: 5px;
+    margin-left: 40px;
+    margin-top: 20px;
+  }
+
+  & .sort__reset {
+    background-color: red;
+    margin-left: 10px;
   }
 }
 </style>
